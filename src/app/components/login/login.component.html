@@ -1,0 +1,38 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+
+            <div class="card-header">
+                <h1 class="mb-0">Login</h1>
+            </div>
+
+            <div class="card-body">
+
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label>Email address*</label>
+                        <input type="email" class="form-control" formControlName="email">
+                        <small class="text-danger"
+                            *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">Please enter a
+                            valid email address</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password*</label>
+                        <input type="password" class="form-control" formControlName="password">
+                        <small class="text-danger"
+                            *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">Please enter
+                            a password</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-primary float-right"
+                        [disabled]="loginForm.invalid">Login</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<!-- Employee Delete Confirm Modal Starts From here -->
+<div class="modal-header">
+    <h4 class="modal-title text-danger">Confirmation</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- MODAL BODY -->
+<div class="modal-body font-weight-bold">
+    <p>Do you really want to remove <span>{{ employee_name | titlecase }} ?</span></p>
+</div>
+
+<!-- MODAL FOOTER -->
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee()">Delete</button>
+</div>
+<!-- Employee Delete Confirm Modal Ends here -->

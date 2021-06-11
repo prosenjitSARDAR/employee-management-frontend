@@ -1,0 +1,195 @@
+<!-- Utility bar starts from here -->
+<div class="container my-2">
+    <div class="row">
+
+        <div class="col-sm">
+            <button class="btn btn-outline-primary text font-weight-bold" data-toggle="modal"
+                data-target="#addEmployeeModal"> + Add Employee </button>
+        </div>
+
+        <div class="col-sm">
+            <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchKeyword">
+        </div>
+
+        <div class="col-sm">
+            <div class="custom-control custom-switch float-right mt-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label text-success font-weight-bold" for="customSwitch1">Show only
+                    active</label>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Utility bar starts Ends here -->
+
+
+<!-- Add-Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title text-primary" id="addEmployeeModalLabel">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="reset()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="addEmployeeForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label>Name*</label>
+                            <input type="text" class="form-control" auto formControlName="name">
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('name').invalid && addEmployeeForm.get('name').touched">
+                                Please add employee name
+                            </small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Email Address*</label>
+                            <input type="email" class="form-control" formControlName="email">
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('email').invalid && addEmployeeForm.get('email').touched">
+                                Please add a valid email address
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label>Phone Number*</label>
+                            <input type="number" class="form-control" formControlName="phone">
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('phone').invalid && addEmployeeForm.get('phone').touched">
+                                Please add a valid phone number
+                            </small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>City*</label>
+                            <input type="text" class="form-control" formControlName="city">
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('city').invalid && addEmployeeForm.get('city').touched">
+                                Please add a city name
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-4">
+                            <label>Gender*</label>
+                            <select class="form-control custom-select" formControlName="gender">
+                                <option selected disabled>Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-Binary</option>
+                            </select>
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('gender').invalid && addEmployeeForm.get('gender').touched">
+                                Please select employee gender
+                            </small>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Status*</label>
+                            <select class="form-control custom-select" formControlName="status">
+                                <option selected disabled>Select status</option>
+                                <option [ngValue]="true">Active</option>
+                                <option [ngValue]="false">Inactive</option>
+                            </select>
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('status').invalid && addEmployeeForm.get('status').touched">
+                                Please select employee status
+                            </small>
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label>Designation or Job Role*</label>
+                            <input type="text" class="form-control" formControlName="designation">
+                            <small class="text-danger"
+                                *ngIf="addEmployeeForm.get('designation').invalid && addEmployeeForm.get('designation').touched">
+                                Please add employee designation
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"
+                            (click)="reset()" #closeButton>Close</button>
+                        <button type="submit" class="btn btn-sm btn-outline-primary"
+                            [disabled]='addEmployeeForm.invalid'>Add Employee</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Add-Employee Modal Ends here -->
+
+
+<!-- Cards/Main Content Starts From Here -->
+<div class="row row-cols-1 row-cols-md-3" *ngIf="allEmployees.length != 0">
+
+    <div class="col mb-4" *ngFor="let employee of allEmployees | filter:searchKeyword">
+        <div class="card h-100">
+
+            <div class="col-md-9 align-self-center text-center my-2">
+                <img src="{{ image(employee) }}" height="225" width="100" class="card-img-top" alt="...">
+            </div>
+
+
+            <div class="card-body border text-center">
+
+                <h5 class="card-title text-center">{{employee.name | titlecase}}</h5>
+                <p class="card-text text-center">{{employee.designation | titlecase}}</p>
+                <p class="card-text text-center">{{employee.city | titlecase}} | <span
+                        class="badge {{employee.status === true? 'badge-success':'badge-danger'}}">{{employee.status ===
+                        true? 'Active':'Inactive'}}</span></p>
+
+                <hr>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <button class="btn btn-sm btn-outline-primary" [routerLink]="['/edit-employee', employee._id]"
+                            routerLinkActive="router-link-active">Edit</button>
+                    </div>
+                    <div class="col-sm text-center">
+                        <button class="btn btn-sm btn-outline-warning"
+                            (click)="viewEmployeeDetails(employee)">Details</button>
+                    </div>
+                    <div class="col-sm text-center">
+                        <button class="btn btn-sm btn-outline-danger"
+                            (click)="deleteEmployee(employee._id, employee.name)">Delete</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <small class="text-muted">Last updated: {{employee.updatedAt | date: 'medium'}}</small>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Cards/Main Content Ends Here -->
+
+<!-- If No employee Found -->
+<div class="jumbotron text-center my-5" *ngIf="allEmployees.length == 0">
+    <h5>No Employee Found</h5>
+</div>
+<!-- If No employee Found Ends here-->

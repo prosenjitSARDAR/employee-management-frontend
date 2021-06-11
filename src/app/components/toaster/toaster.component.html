@@ -1,0 +1,14 @@
+<ngb-toast
+  *ngIf = "toastService.show"
+  [class]="toastService.toasts.classname"
+  [autohide]="true"
+  [delay]="toastService.toasts.delay || 1000"
+  (hide)="toastService.removeToast()"
+>
+<ng-template [ngIf]="isTemplate(toastService.toasts)" [ngIfElse]="text">
+  <ng-template [ngTemplateOutlet]="toastService.toasts.textOrTpl"></ng-template>
+</ng-template>
+
+<ng-template #text>{{ toastService.toasts.textOrTpl }}</ng-template>
+  
+</ngb-toast>

@@ -1,0 +1,20 @@
+<!-- LOADING BAR -->
+<ngx-loading-bar [includeSpinner]="false" [height]="'5px'" [color]="'#0000FF'"></ngx-loading-bar>
+
+<!-- NAVBAR -->
+<app-navbar></app-navbar>
+
+<!-- TOAST -->
+<app-toaster></app-toaster>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<div class="p-3">
+  <footer class="footer fixed-bottom text-center p-3">
+    <span class="text-muted">Employee Management</span>
+  </footer>
+</div>

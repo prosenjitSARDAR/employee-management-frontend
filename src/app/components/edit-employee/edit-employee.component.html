@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row row-cols-2">
+
+        <div class="col-4">
+            <div class="text-center my-5">
+                <img src="{{ image(employeeDetails) }}" class="rounded mt-5 mb-1"
+                    height="225" width="225" alt="...">
+
+                <div class="text-center my-1 py-1 container">
+                    <label class="text">Change Image</label>
+                    <input type="file" class="file-input col-md-10" (change)="uploadImage($event)">
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="jumbotron shadow col-8">
+            <form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label>Name*</label>
+                        <input type="text" class="form-control" formControlName="name">
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('name').invalid && editEmployeeForm.get('name').touched">
+                            Please add employee name
+                        </small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Email Address*</label>
+                        <input type="email" class="form-control" formControlName="email">
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('email').invalid && editEmployeeForm.get('email').touched">
+                            Please add a valid email address
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label>Phone Number*</label>
+                        <input type="number" class="form-control" formControlName="phone">
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('phone').invalid && editEmployeeForm.get('phone').touched">
+                            Please add a valid phone number
+                        </small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>City*</label>
+                        <input type="text" class="form-control" formControlName="city">
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('city').invalid && editEmployeeForm.get('city').touched">
+                            Please add a city name
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <label>Gender*</label>
+                        <select class="form-control custom-select" formControlName="gender">
+                            <option selected disabled>Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="non-binary">Non-Binary</option>
+                        </select>
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('gender').invalid && editEmployeeForm.get('gender').touched">
+                            Please select employee gender
+                        </small>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Status*</label>
+                        <select class="form-control custom-select" formControlName="status">
+                            <option selected disabled>Select status</option>
+                            <option [ngValue]="true">Active</option>
+                            <option [ngValue]="false">Inactive</option>
+                        </select>
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('status').invalid && editEmployeeForm.get('status').touched">
+                            Please select employee status
+                        </small>
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <label>Designation or Job Role*</label>
+                        <input type="text" class="form-control" formControlName="designation">
+                        <small class="text-danger"
+                            *ngIf="editEmployeeForm.get('designation').invalid && editEmployeeForm.get('designation').touched">
+                            Please add employee designation
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="text-right">
+                    <button type="button" class="btn btn-sm btn-outline-secondary mr-1" (click)="reset()">Clear
+                        All</button>
+                    <button type="submit" class="btn btn-sm btn-outline-primary ml-1"
+                        [disabled]='editEmployeeForm.invalid'>Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

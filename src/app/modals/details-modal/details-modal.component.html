@@ -1,0 +1,64 @@
+<!-- MODAL HEADER -->
+<div class="modal-header">
+    <h4 class="modal-title text-primary">Employee Details</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<!-- MODAL BODY -->
+<div class="modal-body ">
+
+    <div class="container">
+        <div class="row row-cols-2">
+
+            <div class="col-4 border">
+                <div class="text-center my-3">
+                    <img src="{{ image(employee) }}" class="rounded" height="200" width="200" alt="...">
+                </div>
+            </div>
+
+            <div class="col-8 border">
+                <h2 class="text-center">{{employee.name | titlecase}}</h2>
+
+                <div class="container">
+                    <div class="row row-cols-2 my-4 font-weight-bold">
+
+                        <div class="col-6">
+                            <p>Email: <span class="font-weight-light">{{employee.email}}</span></p>
+                        </div>
+                        <div class="col-6">
+                            <p>Phone: <span class="font-weight-light">{{employee.phone}}</span></p>
+                        </div>
+                        <div class="col-6">
+                            <p>City: <span class="font-weight-light">{{employee.city | titlecase}}</span></p>
+                        </div>
+                        <div class="col-6">
+                            <p>Gender: <span class="font-weight-light">{{employee.gender | titlecase}}</span></p>
+                        </div>
+                        <div class="col-6">
+                            <p>Designation: <span class="font-weight-light">{{employee.designation | titlecase}}</span>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p>Status: <span class="font-weight-light">{{employee.status === true?
+                                    'Active':'Inactive'}}</span></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- MODAL FOOTER -->
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+</div>
