@@ -25,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 //MODAL COMPONENTS
 import { DetailsModalComponent } from './modals/details-modal/details-modal.component';
 import { EmployeeDeleteModalComponent } from './modals/employee-delete-modal/employee-delete-modal.component';
+import { ChangePasswordComponent } from './modals/change-password/change-password.component';
 
 //SERVICES
 import { DataService } from './services/data.service';
@@ -42,7 +43,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +55,7 @@ import { TokenInterceptorService } from './interceptor/token-interceptor.service
     EmployeeDeleteModalComponent,
     LoginComponent,
     FilterPipe,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public _authService: AuthenticationService) { }
+  constructor(public _authService: AuthenticationService, private _modalService: ModalService) { }
 
   ngOnInit(): void {
   }
 
-  logout() {
-
+  openChangePasswordModal() {
+    this._modalService.changePasswordModal();
   }
 
 }
